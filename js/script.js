@@ -17,13 +17,18 @@ modal.addEventListener("click", (e) => {
 fetchButton.addEventListener("click", fetchImages);
 
 async function fetchImages() {
+    const fetchText = document.getElementById("fetch-text");
+    fetchText.style.display = "none";
+    const loading = document.getElementById("loading");
+    loading.textContent = 'Loading images...';
     const selectFromValue = selectFrom.value;
     const selectToValue = selectTo.value;
     console.log(selectFromValue);
     console.log(selectToValue);
-
+    
     try {
         const response = await fetch(apodData);
+        loading.style.display = "none";
         const data = await response.json();
         console.log(data);
         let imagesOnly = data.filter((item) => item.media_type === "image" && item.date >= selectFromValue && item.date <= selectToValue);
@@ -44,13 +49,15 @@ function displayImages(images) {
         imageCard.classList.add("gallery-item");
 
         imageCard.innerHTML = `
-            <img src="${image.url}" alt="${image.title}" class="apod-image">
+            <div class="image-wrapper">
+            <img src="${image.url}" alt="${image.title}">
+            </div>
             <div class="info">
             <h3>${image.title}</h3>
             <p>${convertDate(image.date)}</p>
             </div>
         `;
-        imageCard.querySelectorAll(".apod-image").forEach(img => {
+        imageCard.querySelectorAll(".gallery-item img").forEach(img => {
             img.addEventListener("click", () => {
                 openModal(image.url, image.title, convertDate(image.date), image.explanation)
             })

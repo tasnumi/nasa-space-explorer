@@ -26,7 +26,8 @@
     <div id="gallery" class="gallery">
       <div class="placeholder">
         <div class="placeholder-icon">🔭</div>
-        <p>Click "Fetch Space Images" to explore the cosmos!</p>
+        <p id="fetch-text">Click "Fetch Space Images" to explore the cosmos!</p>
+        <p id="loading"></p>
       </div>
     </div>
     <div id="modal" class="modal">
@@ -41,5 +42,26 @@
 
   <script src="js/script.js"></script>
 </body>
+<script>
+function createStarLayer(id, count, size, duration) {
+  const layer = document.getElementById(id);
+  let shadows = [];
 
+  for (let i = 0; i < count; i++) {
+    const x = Math.floor(Math.random() * 2000);
+    const y = Math.floor(Math.random() * 2000);
+    shadows.push(`${x}px ${y}px #FFF`);
+  }
+
+  layer.style.width = `${size}px`;
+  layer.style.height = `${size}px`;
+  layer.style.boxShadow = shadows.join(', ');
+  layer.style.animation = `animStar ${duration}s linear infinite`;
+}
+
+// Create layers similar to CodePen example
+createStarLayer('stars', 700, 1, 50);
+createStarLayer('stars2', 200, 2, 100);
+createStarLayer('stars3', 100, 3, 150);
+</script>
 </html>
