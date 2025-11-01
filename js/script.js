@@ -6,7 +6,14 @@ const gallery = document.getElementById("gallery");
 const selectFrom = document.getElementById("select-from");
 const selectTo = document.getElementById("select-to");
 const galleryItem = document.querySelectorAll("gallery-item");
+const modal = document.getElementById("modal");
 
+modal.style.display = "none";
+modal.addEventListener("click", (e) => {
+    if(e.target === modal) {
+        modal.style.display = "none"
+    }
+});
 fetchButton.addEventListener("click", fetchImages);
 
 async function fetchImages() {
@@ -23,7 +30,7 @@ async function fetchImages() {
         imagesOnly.sort((a,b) => new Date(a.date) - new Date(b.date));
         displayImages(imagesOnly.slice(0,9));
     }
-    catch (error){
+    catch (error) {
         console.error("Error fetching images:", error);
         gallery.innerHTML = "<p>Failed to fetch images. Please try again later.</p>";
     }
@@ -43,9 +50,15 @@ function displayImages(images) {
             <p>${convertDate(image.date)}</p>
             </div>
         `;
+        imageCard.querySelectorAll(".apod-image").forEach(img => {
+            img.addEventListener("click", () => {
+                openModal(image.url, image.title, convertDate(image.date), image.explanation)
+            })
+        });
     gallery.appendChild(imageCard);
     });
 }
+
 function convertDate(inputDate) {
     const date = new Date(inputDate);
     const year = date.getFullYear();
@@ -58,4 +71,17 @@ function convertDate(inputDate) {
 
     const monthName = monthNames[monthIndex];
     return `${monthName} ${day}, ${year}`;
+}
+
+function openModal(imageSrc, title, year, explanation) {
+    modal.style.display = "flex";
+    const modalImg = document.getElementById("modal-image");
+    const heading = document.getElementById("title");
+    const explanationText = document.getElementById("explanation");
+    const yearText = document.getElementById("year");
+
+    modalImg.src = imageSrc;
+    heading.textContent = title;
+    yearText.textContent = year;
+    explanationText.textContent = explanation;
 }
