@@ -7,9 +7,50 @@
 
 /* Base page styles */
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(90deg, #0B3D91 0%, #002147 50%, #BC002D 100%);
-  padding: 20px;
+  font-family: 'Lato', sans-serif;
+  height: 100vh;
+   background: linear-gradient(to right, #4B0082, #1E3A8A, #0B3D91);
+}
+#stars, #stars2, #stars3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  z-index: -1;
+}
+
+/* Star layers */
+#stars {
+  box-shadow: 
+    1440px 480px #FFF, 830px 1290px #FFF, 600px 200px #FFF, 1200px 1900px #FFF,
+    50px 1700px #FFF, 1900px 1000px #FFF, 1600px 400px #FFF, 900px 1500px #FFF,
+    1800px 800px #FFF, 400px 1100px #FFF, 200px 1400px #FFF, 700px 900px #FFF,
+    1500px 300px #FFF, 1300px 1700px #FFF, 1700px 200px #FFF, 1000px 500px #FFF;
+  animation: animStar 50s linear infinite;
+}
+
+#stars2 {
+  box-shadow: 
+    400px 300px #FFF, 1200px 1200px #FFF, 700px 1800px #FFF, 1600px 100px #FFF,
+    100px 800px #FFF, 1800px 1600px #FFF, 1300px 700px #FFF, 900px 300px #FFF,
+    1100px 1000px #FFF, 300px 1300px #FFF, 1400px 500px #FFF, 600px 600px #FFF;
+  animation: animStar 100s linear infinite;
+}
+
+#stars3 {
+  box-shadow: 
+    800px 400px #FFF, 1500px 700px #FFF, 400px 1700px #FFF, 1300px 100px #FFF,
+    600px 1200px #FFF, 1100px 300px #FFF, 1700px 1400px #FFF, 900px 900px #FFF,
+    100px 600px #FFF, 1400px 1500px #FFF, 700px 100px #FFF, 1600px 1900px #FFF;
+  animation: animStar 150s linear infinite;
+}
+
+/* Keyframe animation */
+@keyframes animStar {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-2000px); }
 }
 
 /* Centered container */
@@ -31,7 +72,8 @@ body {
 h1 {
   font-family: Verdana, sans-serif;
   font-weight: bold;
-  color: #212121;
+  /* color: #212121; */
+  color: white;
 }
 
 /* Logo */
