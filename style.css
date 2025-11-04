@@ -3,15 +3,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Inter", sans-serif;
 }
 html {
   min-height: 100%;
   background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
 /* Base page styles */
-body {
-  font-family: 'Lato', sans-serif;
-}
+
 
 #stars, #stars2, #stars3 {
   position: fixed;
@@ -157,6 +156,9 @@ button:hover {
   flex-direction: column;
   justify-content: space-between;
   
+}
+#modal-image {
+  height: 30vh;
 }
 
 /* Three columns on wider screens */
